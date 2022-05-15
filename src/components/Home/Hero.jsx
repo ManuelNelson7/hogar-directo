@@ -1,205 +1,133 @@
-
-import { Fragment } from 'react'
-import { Popover, Transition } from '@headlessui/react'
-import { MenuIcon, XIcon } from '@heroicons/react/outline'
-import { ChevronRightIcon } from '@heroicons/react/solid'
-
-const navigation = [
-    { name: 'Product', href: '#' },
-    { name: 'Features', href: '#' },
-    { name: 'Marketplace', href: '#' },
-    { name: 'Company', href: '#' },
-]
+import React, { useEffect, useState } from "react"
 
 const Hero = () => {
+    const [buyOrRent, setBuyOrRent] = useState("alquilar")
+    const [imageCover, setImageCover] = useState("https://images.pexels.com/photos/3288102/pexels-photo-3288102.png?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1")
+
+    useEffect(() => {
+        buyOrRent === 'alquilar' && setImageCover("https://images.pexels.com/photos/3288102/pexels-photo-3288102.png?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1");
+        buyOrRent === 'comprar' && setImageCover("https://images.pexels.com/photos/3288103/pexels-photo-3288103.png?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1");
+    }, [buyOrRent])
+
     return (
-        <div className="min-h-screen">
-            <div className="relative overflow-hidden">
-                <Popover as="header" className="relative">
-                    <div className="bg-white pt-6">
-                        <nav
-                            className="relative max-w-7xl mx-auto flex items-center justify-between px-4 sm:px-6"
-                            aria-label="Global"
-                        >
-                            <div className="flex items-center flex-1">
-                                <div className="flex items-center justify-between w-full md:w-auto">
-                                    <a href="#">
-                                        <span className="sr-only">Workflow</span>
-                                        <img
-                                            className="h-8 w-auto sm:h-10"
-                                            src="https://tailwindui.com/img/logos/workflow-mark-indigo-500.svg"
-                                            alt=""
-                                        />
-                                    </a>
-                                    <div className="-mr-2 flex items-center md:hidden">
-                                        <Popover.Button className="bg-gray-900 rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:bg-gray-800 focus:outline-none focus:ring-2 focus-ring-inset focus:ring-white">
-                                            <span className="sr-only">Open main menu</span>
-                                            <MenuIcon className="h-6 w-6" aria-hidden="true" />
-                                        </Popover.Button>
-                                    </div>
+        <div className="min-h-screen bg-white">
+            <main className="pt-20">
+                <div>
+                    {/* Hero card */}
+                    <div className="relative">
+                        <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gray-100" />
+                        <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
+                            <div className="relative shadow-xl sm:rounded-2xl sm:overflow-hidden">
+                                <div className="absolute inset-0">
+                                    <img
+                                        className="h-full w-full object-cover"
+                                        src={imageCover}
+                                        alt="People working on laptops"
+                                    />
+                                    <div className="absolute inset-0 bg-black opacity-40" />
                                 </div>
-                                <div className="hidden space-x-8 md:flex md:ml-10">
-                                    {navigation.map((item) => (
-                                        <a
-                                            key={item.name}
-                                            href={item.href}
-                                            className="text-base font-medium text-white hover:text-gray-300"
-                                        >
-                                            {item.name}
-                                        </a>
-                                    ))}
-                                </div>
-                            </div>
-                            <div className="hidden md:flex md:items-center md:space-x-6">
-                                <a href="#" className="text-base font-medium text-white hover:text-gray-300">
-                                    Log in
-                                </a>
-                                <a
-                                    href="#"
-                                    className="inline-flex items-center px-4 py-2 border border-transparent text-base font-medium rounded-md text-white bg-gray-600 hover:bg-gray-700"
-                                >
-                                    Start free trial
-                                </a>
-                            </div>
-                        </nav>
-                    </div>
+                                <div className="relative px-4 py-16 sm:px-6 sm:py-24 lg:py-32 lg:px-8 flex flex-col items-center">
+                                    <h1 className="text-center text-4xl font-extrabold tracking-tight sm:text-5xl lg:text-6xl">
+                                        <span className="block text-white">Encontrá tu hogar</span>
+                                        <span className="block text-yellow-400">sin dramas</span>
+                                    </h1>
 
-                    <Transition
-                        as={Fragment}
-                        enter="duration-150 ease-out"
-                        enterFrom="opacity-0 scale-95"
-                        enterTo="opacity-100 scale-100"
-                        leave="duration-100 ease-in"
-                        leaveFrom="opacity-100 scale-100"
-                        leaveTo="opacity-0 scale-95"
-                    >
-                        <Popover.Panel focus className="absolute top-0 inset-x-0 p-2 transition transform origin-top md:hidden">
-                            <div className="rounded-lg shadow-md bg-white ring-1 ring-black ring-opacity-5 overflow-hidden">
-                                <div className="px-5 pt-4 flex items-center justify-between">
-                                    <div>
-                                        <img
-                                            className="h-8 w-auto"
-                                            src="https://tailwindui.com/img/logos/workflow-mark-indigo-600.svg"
-                                            alt=""
-                                        />
-                                    </div>
-                                    <div className="-mr-2">
-                                        <Popover.Button className="bg-white rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-600">
-                                            <span className="sr-only">Close menu</span>
-                                            <XIcon className="h-6 w-6" aria-hidden="true" />
-                                        </Popover.Button>
-                                    </div>
-                                </div>
-                                <div className="pt-5 pb-6">
-                                    <div className="px-2 space-y-1">
-                                        {navigation.map((item) => (
-                                            <a
-                                                key={item.name}
-                                                href={item.href}
-                                                className="block px-3 py-2 rounded-md text-base font-medium text-gray-900 hover:bg-gray-50"
-                                            >
-                                                {item.name}
-                                            </a>
-                                        ))}
-                                    </div>
-                                    <div className="mt-6 px-5">
-                                        <a
-                                            href="#"
-                                            className="block text-center w-full py-3 px-4 rounded-md shadow bg-blue-600 text-white font-medium hover:bg-blue-700"
-                                        >
-                                            Start free trial
-                                        </a>
-                                    </div>
-                                    <div className="mt-6 px-5">
-                                        <p className="text-center text-base font-medium text-gray-500">
-                                            Existing customer?{' '}
-                                            <a href="#" className="text-gray-900 hover:underline">
-                                                Login
-                                            </a>
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                        </Popover.Panel>
-                    </Transition>
-                </Popover>
+                                    <div className="mt-10 sm:mt-12 flex flex-col w-10/12">
+                                        <div className="flex justify-start">
+                                            <button
+                                                className={"px-8 py-3 rounded-tl-lg border-r-2 border-gray-300" + (buyOrRent === "alquilar" ? "font-bold bg-white" : "font-base bg-gray-200")}
+                                                onClick={() => setBuyOrRent("alquilar")}
+                                            >Alquilar</button>
 
-                <main>
-                    <div className="pt-10 bg-white sm:pt-16 lg:pt-8 lg:pb-14 lg:overflow-hidden">
-                        <div className="mx-auto max-w-7xl lg:px-8">
-                            <div className="lg:grid lg:grid-cols-2 lg:gap-8">
-                                <div className="mx-auto max-w-md px-4 sm:max-w-2xl sm:px-6 sm:text-center lg:px-0 lg:text-left lg:flex lg:items-center">
-                                    <div className="lg:py-24">
-                                        <a
-                                            href="#"
-                                            className="inline-flex items-center text-white bg-gray-800 rounded-full p-1 pr-2 sm:text-base lg:text-sm xl:text-base hover:text-gray-200"
-                                        >
-                                            <span className="px-3 py-0.5 text-white text-xs font-semibold leading-5 uppercase tracking-wide bg-blue-500 rounded-full">
-                                                We're hiring
-                                            </span>
-                                            <span className="ml-4 text-sm">Visit our careers page</span>
-                                            <ChevronRightIcon className="ml-2 w-5 h-5 text-gray-500" aria-hidden="true" />
-                                        </a>
-                                        <h1 className="mt-4 text-4xl tracking-tight font-extrabold sm:mt-5 sm:text-6xl lg:mt-6 xl:text-6xl">
-                                            <span className="block">A better way to</span>
-                                            <span className="block text-blue-400">ship web apps</span>
-                                        </h1>
-                                        <p className="mt-3 text-base text-gray-700 sm:mt-5 sm:text-xl lg:text-lg xl:text-xl">
-                                            Anim aute id magna aliqua ad ad non deserunt sunt. Qui irure qui Lorem cupidatat commodo. Elit
-                                            sunt amet fugiat veniam occaecat fugiat.
-                                        </p>
-                                        <div className="mt-10 sm:mt-12">
-                                            <form action="#" className="sm:max-w-xl sm:mx-auto lg:mx-0">
-                                                <div className="sm:flex">
-                                                    <div className="min-w-0 flex-1">
-                                                        <label htmlFor="email" className="sr-only">
-                                                            Email address
-                                                        </label>
-                                                        <input
-                                                            id="email"
-                                                            type="email"
-                                                            placeholder="Enter your email"
-                                                            className="block w-full px-4 py-3 rounded-md bg-gray-200 border-0 text-base text-gray-900 placeholder-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-300 focus:ring-offset-gray-900"
-                                                        />
-                                                    </div>
-                                                    <div className="mt-3 sm:mt-0 sm:ml-3">
-                                                        <button
-                                                            type="submit"
-                                                            className="block w-full py-3 px-4 rounded-md shadow bg-blue-500 text-white font-medium hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-300 focus:ring-offset-gray-900"
-                                                        >
-                                                            Start free trial
-                                                        </button>
-                                                    </div>
-                                                </div>
-                                                <p className="mt-3 text-sm text-gray-700 sm:mt-4">
-                                                    Start your free 14-day trial, no credit card necessary. By providing your email, you agree to
-                                                    our{' '}
-                                                    <a href="#" className="font-medium text-white">
-                                                        terms or service
-                                                    </a>
-                                                    .
-                                                </p>
-                                            </form>
+                                            <button
+                                                className={"px-8 py-3 rounded-tr-lg border-gray-300" + (buyOrRent === "comprar" ? "font-bold bg-white" : "font-base bg-gray-200")}
+                                                onClick={() => setBuyOrRent("comprar")}
+                                            >Comprar</button>
                                         </div>
-                                    </div>
-                                </div>
-                                <div className="mt-12 -mb-16 sm:-mb-48 lg:m-0 lg:relative">
-                                    <div className="mx-auto max-w-md px-4 sm:max-w-2xl sm:px-6 lg:max-w-none lg:px-0">
-                                        {/* Illustration taken from Lucid Illustrations: https://lucid.pixsellz.io/ */}
-                                        <img
-                                            className="w-full lg:absolute lg:inset-y-0 lg:left-0 lg:h-full lg:w-auto lg:max-w-none"
-                                            src="https://images.pexels.com/photos/698170/pexels-photo-698170.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-                                            alt=""
-                                        />
+
+                                        <form action="#" className="rounded-lg">
+                                            <div className="sm:flex">
+
+                                                <select
+                                                    id="property-type"
+                                                    defaultValue="departamento"
+                                                    className="block px-4 py-3 w-100 rounded-bl-lg bg-white border-0 text-base text-gray-900 placeholder-gray-700 focus:outline-none"
+                                                >
+                                                    <option value="casa">Todos</option>
+                                                    <option value="departamento">Departamento</option>
+                                                    <option value="ph">PH</option>
+                                                    <option value="quinta">Quinta</option>
+                                                    <option value="garage">Garage</option>
+                                                    <option value="oficina">Oficina comercial</option>
+                                                    <option value="local">Local comercial</option>
+                                                    <option value="terreno">Terreno</option>
+                                                </select>
+
+                                                <div className="bg-white w-full">
+                                                    <input
+                                                        id="location"
+                                                        type="text"
+                                                        placeholder={`Ingresá una localidad, por ejemplo "Caballito"`}
+                                                        className="block w-full px-4 py-3 w-100 bg-white border-0 text-sm text-gray-900 placeholder-gray-700 focus:outline-none"
+                                                    />
+                                                </div>
+                                                <div className="">
+                                                    <button
+                                                        type="submit"
+                                                        className="block w-full py-3 px-6 rounded-lg sm:rounded-none sm:rounded-r-lg shadow bg-yellow-600 text-white font-semibold hover:bg-yellow-700 transition-all duration-10"
+                                                    >
+                                                        Buscar
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </form>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
 
-                    {/* More main page content here... */}
-                </main>
-            </div>
+                    {/* Logo cloud */}
+                    <div className="bg-gray-100">
+                        <div className="max-w-7xl mx-auto py-16 px-4 sm:px-6 lg:px-8">
+                            <p className="text-center text-sm font-semibold uppercase text-gray-500 tracking-wide">
+                                Trusted by over 5 very average small businesses
+                            </p>
+                            <div className="mt-6 grid grid-cols-2 gap-8 md:grid-cols-6 lg:grid-cols-5">
+                                <div className="col-span-1 flex justify-center md:col-span-2 lg:col-span-1">
+                                    <img className="h-12" src="https://tailwindui.com/img/logos/tuple-logo-gray-400.svg" alt="Tuple" />
+                                </div>
+                                <div className="col-span-1 flex justify-center md:col-span-2 lg:col-span-1">
+                                    <img className="h-12" src="https://tailwindui.com/img/logos/mirage-logo-gray-400.svg" alt="Mirage" />
+                                </div>
+                                <div className="col-span-1 flex justify-center md:col-span-2 lg:col-span-1">
+                                    <img
+                                        className="h-12"
+                                        src="https://tailwindui.com/img/logos/statickit-logo-gray-400.svg"
+                                        alt="StaticKit"
+                                    />
+                                </div>
+                                <div className="col-span-1 flex justify-center md:col-span-2 md:col-start-2 lg:col-span-1">
+                                    <img
+                                        className="h-12"
+                                        src="https://tailwindui.com/img/logos/transistor-logo-gray-400.svg"
+                                        alt="Transistor"
+                                    />
+                                </div>
+                                <div className="col-span-2 flex justify-center md:col-span-2 md:col-start-4 lg:col-span-1">
+                                    <img
+                                        className="h-12"
+                                        src="https://tailwindui.com/img/logos/workcation-logo-gray-400.svg"
+                                        alt="Workcation"
+                                    />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                {/* More main page content here... */}
+            </main>
         </div>
     )
 }
