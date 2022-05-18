@@ -9,6 +9,17 @@ const Hero = () => {
         buyOrRent === 'comprar' && setImageCover("https://images.pexels.com/photos/3288103/pexels-photo-3288103.png?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1");
     }, [buyOrRent])
 
+    const propertyTypes = [
+        { title: 'Casa', value: 'house' },
+        { title: 'Departamento', value: 'departamento' },
+        { title: 'PH', value: 'ph' },
+        { title: 'Quinta', value: 'quinta' },
+        { title: 'Garage', value: 'garage' },
+        { title: 'Oficina comercial', value: 'oficina' },
+        { title: 'Local comercial', value: 'local' },
+        { title: 'Terreno', value: 'terreno' },
+    ]
+
     return (
         <div className="min-h-screen bg-white">
             <main className="pt-20">
@@ -53,14 +64,9 @@ const Hero = () => {
                                                     defaultValue="departamento"
                                                     className="block px-4 py-3 w-100 rounded-bl-lg bg-white border-0 text-base text-gray-900 placeholder-gray-700 focus:outline-none"
                                                 >
-                                                    <option value="casa">Todos</option>
-                                                    <option value="departamento">Departamento</option>
-                                                    <option value="ph">PH</option>
-                                                    <option value="quinta">Quinta</option>
-                                                    <option value="garage">Garage</option>
-                                                    <option value="oficina">Oficina comercial</option>
-                                                    <option value="local">Local comercial</option>
-                                                    <option value="terreno">Terreno</option>
+                                                    {propertyTypes.map(propertyType => (
+                                                        <option key={propertyType.value} value={propertyType.value}>{propertyType.title}</option>
+                                                    ))}
                                                 </select>
 
                                                 <div className="bg-white w-full">
